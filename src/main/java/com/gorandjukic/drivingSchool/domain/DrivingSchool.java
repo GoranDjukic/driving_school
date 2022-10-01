@@ -1,31 +1,40 @@
-package com.gorandjukic.drivingSchool.model;
+package com.gorandjukic.drivingSchool.domain;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity(name = "driving_school")
-public class DrivingSchool {
+@Entity
+public class DrivingSchool extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false, unique = true)
     private String name;
-
-    @Column(nullable = false)
     private Integer yearOfEst;
+    private Integer numberOfVehicles;
 
-    @Column
-    private Integer numberOfVehicle;
-
-    @OneToMany(mappedBy = "driving_school", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "drivingSchool", cascade = CascadeType.ALL)
     private List<Trainee> trainees = new ArrayList<>();
 
-    @OneToMany(mappedBy = "driving_school", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "drivingSchool", cascade = CascadeType.ALL)
     private List<Exam> exams = new ArrayList<>();
+
+    // todo read about static factory pattern
+//     Example:
+//    public static DrivingSchool initialized(
+//            String name,
+//            Integer yearOfEst,
+//            Integer numberOfVehicle
+//    ) {
+//        return new DrivingSchool(
+//                name,
+//                yearOfEst,
+//                numberOfVehicle,
+//                new ArrayList<>(),
+//                new ArrayList<>()
+//        );
+//    }
 
     public DrivingSchool() {
     }
@@ -34,17 +43,9 @@ public class DrivingSchool {
                          List<Trainee> trainees, List<Exam> exams) {
         this.name = name;
         this.yearOfEst = yearOfEst;
-        this.numberOfVehicle = numberOfVehicle;
+        this.numberOfVehicles = numberOfVehicle;
         this.trainees = trainees;
         this.exams = exams;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -63,12 +64,12 @@ public class DrivingSchool {
         this.yearOfEst = yearOfEst;
     }
 
-    public Integer getNumberOfVehicle() {
-        return numberOfVehicle;
+    public Integer getNumberOfVehicles() {
+        return numberOfVehicles;
     }
 
-    public void setNumberOfVehicle(Integer numberOfVehicle) {
-        this.numberOfVehicle = numberOfVehicle;
+    public void setNumberOfVehicles(Integer numberOfVehicles) {
+        this.numberOfVehicles = numberOfVehicles;
     }
 
     public List<Trainee> getTrainees() {
@@ -96,12 +97,12 @@ public class DrivingSchool {
         if (!(o instanceof DrivingSchool))
             return false;
         DrivingSchool that = (DrivingSchool) o;
-        return Objects.equals(getId(), that.getId()) && Objects.equals(getName(), that.getName()) && Objects.equals(getYearOfEst(), that.getYearOfEst()) && Objects.equals(getNumberOfVehicle(), that.getNumberOfVehicle()) && Objects.equals(getTrainees(), that.getTrainees()) && Objects.equals(getExams(), that.getExams());
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getName(), that.getName()) && Objects.equals(getYearOfEst(), that.getYearOfEst()) && Objects.equals(getNumberOfVehicles(), that.getNumberOfVehicles()) && Objects.equals(getTrainees(), that.getTrainees()) && Objects.equals(getExams(), that.getExams());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getYearOfEst(), getNumberOfVehicle(), getTrainees(), getExams());
+        return Objects.hash(getId(), getName(), getYearOfEst(), getNumberOfVehicles());
     }
 
     @Override
@@ -110,9 +111,7 @@ public class DrivingSchool {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", yearOfEst=" + yearOfEst +
-                ", numberOfVehicle=" + numberOfVehicle +
-                ", trainees=" + trainees +
-                ", exams=" + exams +
+                ", numberOfVehicle=" + numberOfVehicles +
                 '}';
     }
 }

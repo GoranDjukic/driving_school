@@ -1,6 +1,6 @@
 package com.gorandjukic.drivingSchool.service;
 
-import com.gorandjukic.drivingSchool.model.Trainee;
+import com.gorandjukic.drivingSchool.domain.Trainee;
 import com.gorandjukic.drivingSchool.web.dto.TraineeDto;
 import org.springframework.data.domain.Page;
 

@@ -1,6 +1,6 @@
 package com.gorandjukic.drivingSchool.service;
 
-import com.gorandjukic.drivingSchool.model.Exam;
+import com.gorandjukic.drivingSchool.domain.Exam;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

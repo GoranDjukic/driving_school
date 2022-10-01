@@ -1,6 +1,6 @@
 package com.gorandjukic.drivingSchool.support;
 
-import com.gorandjukic.drivingSchool.model.User;
+import com.gorandjukic.drivingSchool.domain.User;
 import com.gorandjukic.drivingSchool.web.dto.UserDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
 package com.gorandjukic.drivingSchool.service;
 
-import com.gorandjukic.drivingSchool.model.User;
+import com.gorandjukic.drivingSchool.domain.User;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.gorandjukic.drivingSchool.repository;
 
-import com.gorandjukic.drivingSchool.model.DrivingSchool;
+import com.gorandjukic.drivingSchool.domain.DrivingSchool;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

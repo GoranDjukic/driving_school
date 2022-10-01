@@ -1,6 +1,6 @@
 package com.gorandjukic.drivingSchool.support;
 
-import com.gorandjukic.drivingSchool.model.DrivingSchool;
+import com.gorandjukic.drivingSchool.domain.DrivingSchool;
 import com.gorandjukic.drivingSchool.web.dto.DrivingSchoolDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,7 @@ public class DrivingSchoolToDrivingSchoolDto implements Converter<DrivingSchool,
 
         dto.setId(source.getId());
         dto.setName(source.getName());
-        dto.setNumberOfVehicle(source.getNumberOfVehicle());
+        dto.setNumberOfVehicle(source.getNumberOfVehicles());
         dto.setYearOfEst(source.getYearOfEst());
 
         return dto;

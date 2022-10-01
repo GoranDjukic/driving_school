@@ -1,21 +1,14 @@
-package com.gorandjukic.drivingSchool.model;
+package com.gorandjukic.drivingSchool.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Exam {
+@Entity
+public class Exam extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
     private Integer numberOfSeats;
-
-    @Column(name = "date_of_exam", nullable = false)
     private LocalDate date;
-
     @ManyToOne
     private DrivingSchool drivingSchool;
 
@@ -26,14 +19,6 @@ public class Exam {
         this.numberOfSeats = numberOfSeats;
         this.date = date;
         this.drivingSchool = drivingSchool;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Integer getNumberOfSeats() {

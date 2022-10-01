@@ -1,7 +1,7 @@
 package com.gorandjukic.drivingSchool.web.controller;
 
 
-import com.gorandjukic.drivingSchool.model.Trainee;
+import com.gorandjukic.drivingSchool.domain.Trainee;
 import com.gorandjukic.drivingSchool.service.TraineeService;
 import com.gorandjukic.drivingSchool.support.TraineeToTraineeDto;
 import com.gorandjukic.drivingSchool.web.dto.TraineeDto;

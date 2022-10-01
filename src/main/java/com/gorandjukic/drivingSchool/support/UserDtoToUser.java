@@ -1,6 +1,6 @@
 package com.gorandjukic.drivingSchool.support;
 
-import com.gorandjukic.drivingSchool.model.User;
+import com.gorandjukic.drivingSchool.domain.User;
 import com.gorandjukic.drivingSchool.service.UserService;
 import com.gorandjukic.drivingSchool.web.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;

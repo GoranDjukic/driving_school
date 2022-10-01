@@ -1,6 +1,6 @@
 package com.gorandjukic.drivingSchool.support;
 
-import com.gorandjukic.drivingSchool.model.Exam;
+import com.gorandjukic.drivingSchool.domain.Exam;
 import com.gorandjukic.drivingSchool.web.dto.ExamDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

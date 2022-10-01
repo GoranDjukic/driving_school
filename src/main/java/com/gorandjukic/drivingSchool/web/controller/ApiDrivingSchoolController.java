@@ -1,6 +1,6 @@
 package com.gorandjukic.drivingSchool.web.controller;
 
-import com.gorandjukic.drivingSchool.model.DrivingSchool;
+import com.gorandjukic.drivingSchool.domain.DrivingSchool;
 import com.gorandjukic.drivingSchool.service.DrivingSchoolService;
 import com.gorandjukic.drivingSchool.support.DrivingSchoolToDrivingSchoolDto;
 import com.gorandjukic.drivingSchool.web.dto.DrivingSchoolDto;

@@ -1,6 +1,6 @@
 package com.gorandjukic.drivingSchool.service.impl;
 
-import com.gorandjukic.drivingSchool.model.Exam;
+import com.gorandjukic.drivingSchool.domain.Exam;
 import com.gorandjukic.drivingSchool.repository.ExamRepository;
 import com.gorandjukic.drivingSchool.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;

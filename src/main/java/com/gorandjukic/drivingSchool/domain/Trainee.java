@@ -1,44 +1,34 @@
-package com.gorandjukic.drivingSchool.model;
+package com.gorandjukic.drivingSchool.domain;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Trainee {
+public class Trainee extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false)
     private String surname;
-
-    @Column
     private Integer birthYear;
-
-    @Column
     private String place;
-
-    @Column
-    private boolean listenedTheory = false;
-
-    @Column
-    private boolean drivingDone = false;
-
-    @Column
-    private boolean passedExam = false;
-
+    private boolean listenedTheory;
+    private boolean drivingDone;
+    private boolean passedExam;
     @ManyToOne
     private DrivingSchool drivingSchool;
 
     public Trainee() {
     }
 
-    public Trainee(String name, String surname, Integer birthYear, String place,
-                   boolean listenedTheory, boolean drivingDone, boolean passedExam, DrivingSchool drivingSchool) {
+    public Trainee(
+            String name,
+            String surname,
+            Integer birthYear,
+            String place,
+            boolean listenedTheory,
+            boolean drivingDone,
+            boolean passedExam,
+            DrivingSchool drivingSchool
+    ) {
         this.name = name;
         this.surname = surname;
         this.birthYear = birthYear;
@@ -47,14 +37,6 @@ public class Trainee {
         this.drivingDone = drivingDone;
         this.passedExam = passedExam;
         this.drivingSchool = drivingSchool;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -120,7 +102,6 @@ public class Trainee {
     public void setDrivingSchool(DrivingSchool drivingSchool) {
         this.drivingSchool = drivingSchool;
     }
-
 
 
     @Override

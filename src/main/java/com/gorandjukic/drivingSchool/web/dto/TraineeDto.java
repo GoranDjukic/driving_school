@@ -1,6 +1,5 @@
 package com.gorandjukic.drivingSchool.web.dto;
 
-import com.gorandjukic.drivingSchool.model.DrivingSchool;
 import org.hibernate.validator.constraints.Length;
 
 public class TraineeDto {

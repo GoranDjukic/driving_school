@@ -1,12 +1,11 @@
 package com.gorandjukic.drivingSchool.web.controller;
 
-import com.gorandjukic.drivingSchool.model.Exam;
+import com.gorandjukic.drivingSchool.domain.Exam;
 import com.gorandjukic.drivingSchool.service.ExamService;
 import com.gorandjukic.drivingSchool.support.ExamToExamDto;
 import com.gorandjukic.drivingSchool.web.dto.ExamDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;

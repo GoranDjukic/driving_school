@@ -1,7 +1,7 @@
 package com.gorandjukic.drivingSchool.service.impl;
 
 import com.gorandjukic.drivingSchool.enumerations.Role;
-import com.gorandjukic.drivingSchool.model.User;
+import com.gorandjukic.drivingSchool.domain.User;
 import com.gorandjukic.drivingSchool.repository.UserRepository;
 import com.gorandjukic.drivingSchool.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
