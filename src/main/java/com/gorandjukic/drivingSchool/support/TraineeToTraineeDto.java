@@ -1,7 +1,7 @@
 package com.gorandjukic.drivingSchool.support;
 
 import com.gorandjukic.drivingSchool.domain.Trainee;
-import com.gorandjukic.drivingSchool.web.dto.TraineeDto;
+import com.gorandjukic.drivingSchool.web.response.TraineeResponse;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class TraineeToTraineeDto implements Converter<Trainee, TraineeDto> {
+public class TraineeToTraineeDto implements Converter<Trainee, TraineeResponse> {
 
     @Override
-    public TraineeDto convert(Trainee source) {
-        TraineeDto dto = new TraineeDto();
+    public TraineeResponse convert(Trainee source) {
+        TraineeResponse dto = new TraineeResponse();
 
         dto.setId(source.getId());
         dto.setName(source.getName());
@@ -30,8 +30,8 @@ public class TraineeToTraineeDto implements Converter<Trainee, TraineeDto> {
         return dto;
     }
 
-    public List<TraineeDto> convert (List<Trainee> source) {
-        List<TraineeDto> dtos = new ArrayList<>();
+    public List<TraineeResponse> convert (List<Trainee> source) {
+        List<TraineeResponse> dtos = new ArrayList<>();
 
         for (Trainee t : source) {
             dtos.add(convert(t));

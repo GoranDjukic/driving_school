@@ -1,24 +1,15 @@
-package com.gorandjukic.drivingSchool.web.dto;
+package com.gorandjukic.drivingSchool.web.request;
 
 import org.hibernate.validator.constraints.Length;
 
-public class DrivingSchoolDto {
-
-    private Long id;
+public class DrivingSchoolRequest {
 
     @Length(max = 50)
     private String name;
-
     private Integer yearOfEst;
-
     private Integer numberOfVehicle;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public DrivingSchoolRequest() {
     }
 
     public String getName() {
@@ -44,6 +35,4 @@ public class DrivingSchoolDto {
     public void setNumberOfVehicle(Integer numberOfVehicle) {
         this.numberOfVehicle = numberOfVehicle;
     }
-
-
 }

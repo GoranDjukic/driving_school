@@ -1,33 +1,31 @@
 package com.gorandjukic.drivingSchool.support;
 
+import com.gorandjukic.drivingSchool.domain.DrivingSchool;
 import com.gorandjukic.drivingSchool.domain.Trainee;
-import com.gorandjukic.drivingSchool.service.TraineeService;
-import com.gorandjukic.drivingSchool.web.dto.TraineeDto;
+import com.gorandjukic.drivingSchool.repository.DrivingSchoolRepository;
+import com.gorandjukic.drivingSchool.web.request.TraineeRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TraineeDtoToTrainee implements Converter<TraineeDto, Trainee> {
+public class TraineeDtoToTrainee implements Converter<TraineeRequest, Trainee> {
 
     @Autowired
-    private TraineeService traineeService;
+    private DrivingSchoolRepository drivingSchoolRepository;
 
     @Override
-    public Trainee convert(TraineeDto source) {
-        // naredni kod nije sa sigurnoscu radjen
-        Trainee trainee = null;
-        if (source.getId() != null) {
-            trainee = traineeService.one(source.getId()).get();
-        }
-        if (trainee == null) {
-            trainee = new Trainee();
-        }
-        trainee.setId(source.getId());
+    public Trainee convert(TraineeRequest source) {
+
+        Trainee trainee = new Trainee();
+
         trainee.setName(source.getName());
         trainee.setSurname(source.getSurname());
         trainee.setBirthYear(source.getBirthYear());
         trainee.setPlace(source.getPlace());
+
+        DrivingSchool drivingSchool = drivingSchoolRepository.getReferenceById(source.getDrivingSchoolId());
+        trainee.setDrivingSchool(drivingSchool);
 
         return trainee;
     }

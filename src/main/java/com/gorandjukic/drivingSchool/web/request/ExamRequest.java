@@ -1,27 +1,16 @@
-package com.gorandjukic.drivingSchool.web.dto;
+package com.gorandjukic.drivingSchool.web.request;
 
 import javax.validation.constraints.Min;
 import java.time.LocalDate;
 
-public class ExamDto {
-
-    private Long id;
+public class ExamRequest {
 
     @Min(value = 0, message = "The value must be positive")
     private Integer numberOfSeats;
-
     private LocalDate date;
-
     private Long drivingSchoolId;
-    private String drivingSchoolName;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public ExamRequest() {
     }
 
     public Integer getNumberOfSeats() {
@@ -46,13 +35,5 @@ public class ExamDto {
 
     public void setDrivingSchoolId(Long drivingSchoolId) {
         this.drivingSchoolId = drivingSchoolId;
-    }
-
-    public String getDrivingSchoolName() {
-        return drivingSchoolName;
-    }
-
-    public void setDrivingSchoolName(String drivingSchoolName) {
-        this.drivingSchoolName = drivingSchoolName;
     }
 }

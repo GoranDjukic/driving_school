@@ -1,22 +1,23 @@
 package com.gorandjukic.drivingSchool.service;
 
 import com.gorandjukic.drivingSchool.domain.Trainee;
-import com.gorandjukic.drivingSchool.web.dto.TraineeDto;
+import com.gorandjukic.drivingSchool.web.request.TraineeRequest;
+import com.gorandjukic.drivingSchool.web.response.TraineeResponse;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface TraineeService {
-    Page<Trainee> all(int page);
+    Page<Trainee> all(int page, int size);
 
     Optional<Trainee> one(Long id);
 
-    // nije implementirano
-    Trainee save(TraineeDto trainee);
+    Trainee save(TraineeRequest request);
 
-    // nije implementirano
-    Trainee update(Trainee trainee);
+    Trainee update(TraineeRequest request, Long id);
 
-    // nije implementirano
     Trainee delete(Long id);
+
+    List<TraineeResponse> getTraineesByDsOrName (Long drivingSchoolId, String traineeName);
 }

@@ -1,10 +1,10 @@
 package com.gorandjukic.drivingSchool.web.controller;
 
-
 import com.gorandjukic.drivingSchool.domain.Trainee;
 import com.gorandjukic.drivingSchool.service.TraineeService;
 import com.gorandjukic.drivingSchool.support.TraineeToTraineeDto;
-import com.gorandjukic.drivingSchool.web.dto.TraineeDto;
+import com.gorandjukic.drivingSchool.web.request.TraineeRequest;
+import com.gorandjukic.drivingSchool.web.response.TraineeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -20,35 +20,59 @@ public class ApiTraineeController {
 
     @Autowired
     private TraineeService traineeService;
-
     @Autowired
     private TraineeToTraineeDto toTraineeDto;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<TraineeDto>> getAll(
-            @RequestParam(value = "traineeName", required = false) String traineeName,
-            @RequestParam(value = "drivingSchoolId", required = false) Long drivingSchoolId,
-            @RequestParam(value = "page", defaultValue = "0") int page) {
-
-        Page<Trainee> traineeList = traineeService.all(page);
+    @GetMapping
+    public ResponseEntity<List<TraineeResponse>> getAll(
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "999") int size) {
+        Page<Trainee> traineeList = traineeService.all(page, size);
 
         return new ResponseEntity<>(toTraineeDto.convert(traineeList.getContent()), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    ResponseEntity<TraineeDto> getOne(@PathVariable Long id) {
+    @GetMapping(value = "/{id}")
+    ResponseEntity<TraineeResponse> getOne(@PathVariable Long id) {
         Optional<Trainee> trainee = traineeService.one(id);
 
-        if (!trainee.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(toTraineeDto.convert(trainee.get()), HttpStatus.OK);
     }
 
-    // add
+    @PostMapping
+    public ResponseEntity<TraineeResponse> save(@RequestBody TraineeRequest request) {
+        Trainee saved = traineeService.save(request);
 
-    // update
+        return new ResponseEntity<TraineeResponse>(toTraineeDto.convert(saved), HttpStatus.CREATED);
+    }
 
-    // delete
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<TraineeResponse> update(
+            @PathVariable Long id,
+            @RequestBody TraineeRequest request) {
+        Trainee persisted = traineeService.update(request, id);
 
+        return new ResponseEntity<>(toTraineeDto.convert(persisted), HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        traineeService.delete(id);
+
+        return new ResponseEntity<String>("Student deleted successfully!", HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    public List<TraineeResponse> getTraineesByDsOrName(
+            @RequestParam Long drivingSchoolId,
+            @RequestParam String traineeName
+    ) {
+
+        return traineeService.getTraineesByDsOrName(
+                drivingSchoolId,
+                traineeName
+        );
+    }
 }
+
+

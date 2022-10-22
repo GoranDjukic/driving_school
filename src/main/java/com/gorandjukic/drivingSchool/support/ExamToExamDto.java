@@ -1,7 +1,7 @@
 package com.gorandjukic.drivingSchool.support;
 
 import com.gorandjukic.drivingSchool.domain.Exam;
-import com.gorandjukic.drivingSchool.web.dto.ExamDto;
+import com.gorandjukic.drivingSchool.web.response.ExamResponse;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class ExamToExamDto implements Converter<Exam, ExamDto> {
+public class ExamToExamDto implements Converter<Exam, ExamResponse> {
 
 
     @Override
-    public ExamDto convert(Exam source) {
-        ExamDto dto = new ExamDto();
+    public ExamResponse convert(Exam source) {
+        ExamResponse dto = new ExamResponse();
 
         dto.setId(source.getId());
         dto.setNumberOfSeats(source.getNumberOfSeats());
@@ -26,8 +26,8 @@ public class ExamToExamDto implements Converter<Exam, ExamDto> {
         return dto;
     }
 
-    public List<ExamDto> convert (List<Exam> source) {
-        List<ExamDto> dtos = new ArrayList<>();
+    public List<ExamResponse> convert(List<Exam> source) {
+        List<ExamResponse> dtos = new ArrayList<>();
 
         for (Exam e : source) {
             dtos.add(convert(e));

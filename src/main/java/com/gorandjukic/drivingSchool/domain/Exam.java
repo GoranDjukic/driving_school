@@ -15,7 +15,11 @@ public class Exam extends BaseEntity {
     public Exam() {
     }
 
-    public Exam(Integer numberOfSeats, LocalDate date, DrivingSchool drivingSchool) {
+    public Exam(
+            Integer numberOfSeats,
+            LocalDate date,
+            DrivingSchool drivingSchool
+    ) {
         this.numberOfSeats = numberOfSeats;
         this.date = date;
         this.drivingSchool = drivingSchool;

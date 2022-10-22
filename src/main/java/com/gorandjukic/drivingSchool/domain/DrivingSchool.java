@@ -13,34 +13,21 @@ public class DrivingSchool extends BaseEntity {
     private String name;
     private Integer yearOfEst;
     private Integer numberOfVehicles;
-
     @OneToMany(mappedBy = "drivingSchool", cascade = CascadeType.ALL)
     private List<Trainee> trainees = new ArrayList<>();
-
     @OneToMany(mappedBy = "drivingSchool", cascade = CascadeType.ALL)
     private List<Exam> exams = new ArrayList<>();
-
-    // todo read about static factory pattern
-//     Example:
-//    public static DrivingSchool initialized(
-//            String name,
-//            Integer yearOfEst,
-//            Integer numberOfVehicle
-//    ) {
-//        return new DrivingSchool(
-//                name,
-//                yearOfEst,
-//                numberOfVehicle,
-//                new ArrayList<>(),
-//                new ArrayList<>()
-//        );
-//    }
 
     public DrivingSchool() {
     }
 
-    public DrivingSchool(String name, Integer yearOfEst, Integer numberOfVehicle,
-                         List<Trainee> trainees, List<Exam> exams) {
+    public DrivingSchool(
+            String name,
+            Integer yearOfEst,
+            Integer numberOfVehicle,
+            List<Trainee> trainees,
+            List<Exam> exams
+    ) {
         this.name = name;
         this.yearOfEst = yearOfEst;
         this.numberOfVehicles = numberOfVehicle;
@@ -87,7 +74,6 @@ public class DrivingSchool extends BaseEntity {
     public void setExams(List<Exam> exams) {
         this.exams = exams;
     }
-
 
 
     @Override

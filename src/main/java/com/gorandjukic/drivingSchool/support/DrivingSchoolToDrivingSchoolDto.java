@@ -1,7 +1,7 @@
 package com.gorandjukic.drivingSchool.support;
 
 import com.gorandjukic.drivingSchool.domain.DrivingSchool;
-import com.gorandjukic.drivingSchool.web.dto.DrivingSchoolDto;
+import com.gorandjukic.drivingSchool.web.response.DrivingSchoolResponse;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class DrivingSchoolToDrivingSchoolDto implements Converter<DrivingSchool, DrivingSchoolDto> {
+public class DrivingSchoolToDrivingSchoolDto implements Converter<DrivingSchool, DrivingSchoolResponse> {
 
     @Override
-    public DrivingSchoolDto convert(DrivingSchool source) {
-        DrivingSchoolDto dto = new DrivingSchoolDto();
+    public DrivingSchoolResponse convert(DrivingSchool source) {
+        DrivingSchoolResponse dto = new DrivingSchoolResponse();
 
         dto.setId(source.getId());
         dto.setName(source.getName());
@@ -23,11 +23,11 @@ public class DrivingSchoolToDrivingSchoolDto implements Converter<DrivingSchool,
         return dto;
     }
 
-    public List<DrivingSchoolDto> convert(List<DrivingSchool> source) {
-        List<DrivingSchoolDto> dtos = new ArrayList<>();
+    public List<DrivingSchoolResponse> convert(List<DrivingSchool> source) {
+        List<DrivingSchoolResponse> dtos = new ArrayList<>();
 
         for (DrivingSchool ds : source) {
-            DrivingSchoolDto dto = convert(ds);
+            DrivingSchoolResponse dto = convert(ds);
             dtos.add(dto);
         }
         return dtos;
