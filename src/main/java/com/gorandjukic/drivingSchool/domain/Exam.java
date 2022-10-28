@@ -1,6 +1,8 @@
 package com.gorandjukic.drivingSchool.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -9,8 +11,14 @@ public class Exam extends BaseEntity {
 
     private Integer numberOfSeats;
     private LocalDate date;
+    @JoinColumn(name = "driving_school_id")
     @ManyToOne
     private DrivingSchool drivingSchool;
+
+    public Exam addTrainee() {
+        this.numberOfSeats--;
+        return this;
+    }
 
     public Exam() {
     }
