@@ -24,8 +24,7 @@ CREATE TABLE `trainee` (
     place VARCHAR(255) NOT NULL,
     listened_theory BIT(1) DEFAULT false,
     driving_done BIT(1) DEFAULT false,
-    passed_exam BIT(1) DEFAULT false,
-    driving_school_id BIGINT,
+    driving_school_id BIGINT NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -41,8 +40,24 @@ CREATE TABLE `exam` (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE `examination` (
+    id BIGINT AUTO_INCREMENT NOT NULL,
+    exam_id BIGINT NOT NULL,
+    trainee_id BIGINT NOT NULL,
+    state VARCHAR(50) default 'INITIATED',
+    PRIMARY KEY (id)
+);
+
 ALTER TABLE exam
 ADD CONSTRAINT FK_exam_driving_school_id
 FOREIGN KEY (driving_school_id) REFERENCES driving_school(id);
+
+ALTER TABLE examination
+ADD CONSTRAINT FK_examination_exam_id
+FOREIGN KEY (exam_id) REFERENCES exam(id);
+
+ALTER TABLE examination
+ADD CONSTRAINT FK_examination_trainee_id
+FOREIGN KEY (trainee_id) REFERENCES trainee(id);
 
 COMMIT;

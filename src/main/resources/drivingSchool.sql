@@ -16,12 +16,12 @@ INSERT INTO `driving_school` (name, year_of_est, number_of_vehicles)
     VALUES ('King', 1993, 30);
 
 
-INSERT INTO `trainee` (name, surname, birth_year, place, listened_theory, driving_done, passed_exam, driving_school_id)
-    VALUES ('Marko', 'Markovic', 2001, 'Novi Sad', false, false, false, 1);
-INSERT INTO `trainee` (name, surname, birth_year, place, listened_theory, driving_done, passed_exam, driving_school_id)
-    VALUES ('Milos', 'Milosevic', 2002, 'Beograd', false, false, false, 2);
-INSERT INTO `trainee` (name, surname, birth_year, place, listened_theory, driving_done, passed_exam, driving_school_id)
-    VALUES ('Nenad', 'Nenadovic', 2003, 'Valjevo', false, false, false, 3);
+INSERT INTO `trainee` (name, surname, birth_year, place, listened_theory, driving_done, driving_school_id)
+    VALUES ('Marko', 'Markovic', 2001, 'Novi Sad', false, false, 1);
+INSERT INTO `trainee` (name, surname, birth_year, place, listened_theory, driving_done, driving_school_id)
+    VALUES ('Milos', 'Milosevic', 2002, 'Beograd', false, false, 2);
+INSERT INTO `trainee` (name, surname, birth_year, place, listened_theory, driving_done, driving_school_id)
+    VALUES ('Nenad', 'Nenadovic', 2003, 'Valjevo', false, false, 3);
 
 
 INSERT INTO `exam` (number_of_seats, date_of_exam, driving_school_id)
