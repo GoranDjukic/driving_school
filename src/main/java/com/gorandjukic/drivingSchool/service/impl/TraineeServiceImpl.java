@@ -3,10 +3,9 @@ package com.gorandjukic.drivingSchool.service.impl;
 import com.gorandjukic.drivingSchool.domain.Trainee;
 import com.gorandjukic.drivingSchool.repository.TraineeRepository;
 import com.gorandjukic.drivingSchool.service.TraineeService;
-import com.gorandjukic.drivingSchool.support.TraineeDtoToTrainee;
+import com.gorandjukic.drivingSchool.support.TraineeEntityMapper;
 import com.gorandjukic.drivingSchool.web.request.TraineeRequest;
 import com.gorandjukic.drivingSchool.web.response.TraineeResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -17,13 +16,18 @@ import java.util.Optional;
 @Service
 public class TraineeServiceImpl implements TraineeService {
 
+    private final TraineeRepository traineeRepository;
+    private final TraineeEntityMapper traineeEntityMapper;
 
-    @Autowired
-    private TraineeRepository traineeRepository;
+    public TraineeServiceImpl(
+            TraineeRepository traineeRepository,
+            TraineeEntityMapper traineeEntityMapper
+    ) {
+        this.traineeRepository = traineeRepository;
+        this.traineeEntityMapper = traineeEntityMapper;
+    }
 
-    @Autowired
-    private TraineeDtoToTrainee ToTrainee;
-
+    // todo naziv funkcije treba da bude izrazen kao glagol
     @Override
     public Page<Trainee> all(int page, int size) {
         return traineeRepository.findAll(PageRequest.of(page, size));
@@ -36,7 +40,7 @@ public class TraineeServiceImpl implements TraineeService {
 
     @Override
     public Trainee save(TraineeRequest traineeDto) {
-        Trainee trainee = ToTrainee.convert(traineeDto);
+        Trainee trainee = traineeEntityMapper.convert(traineeDto);
         return traineeRepository.save(trainee);
     }
 
@@ -55,17 +59,13 @@ public class TraineeServiceImpl implements TraineeService {
 
     @Override
     public Trainee delete(Long id) {
+        // todo check if exist
         traineeRepository.deleteById(id);
-        return null;
+        return null; // todo void
     }
 
     @Override
-    public List<TraineeResponse> getTraineesByDsOrName(
-            Long drivingSchoolId,
-            String traineeName
-    ) {
+    public List<TraineeResponse> getTraineesByDsOrName(Long drivingSchoolId, String traineeName) {
         return traineeRepository.getTraineesByDsOrName(drivingSchoolId, traineeName);
     }
-
-
 }

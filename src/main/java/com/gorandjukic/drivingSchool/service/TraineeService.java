@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TraineeService {
+    // todo use pageable
     Page<Trainee> all(int page, int size);
 
     Optional<Trainee> one(Long id);
@@ -19,5 +20,5 @@ public interface TraineeService {
 
     Trainee delete(Long id);
 
-    List<TraineeResponse> getTraineesByDsOrName (Long drivingSchoolId, String traineeName);
+    List<TraineeResponse> getTraineesByDsOrName(Long drivingSchoolId, String traineeName);
 }
