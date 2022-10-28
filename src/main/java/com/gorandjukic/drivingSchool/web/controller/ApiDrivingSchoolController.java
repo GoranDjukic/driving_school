@@ -14,27 +14,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+// todo verzionisanje
 @RequestMapping(value = "/api/driving-schools")
 public class ApiDrivingSchoolController {
 
-    @Autowired
-    private DrivingSchoolService drivingSchoolService;
-    @Autowired
-    private ExamService examService;
-    @Autowired
-    private DrivingSchoolToDrivingSchoolDto toDrivingSchoolDto;
+    private final DrivingSchoolService drivingSchoolService;
+    private final ExamService examService;
+    private final DrivingSchoolToDrivingSchoolDto toDrivingSchoolDto;
 
-    @RequestMapping
+    public ApiDrivingSchoolController(
+            DrivingSchoolService drivingSchoolService,
+            ExamService examService,
+            DrivingSchoolToDrivingSchoolDto toDrivingSchoolDto
+    ) {
+        this.drivingSchoolService = drivingSchoolService;
+        this.examService = examService;
+        this.toDrivingSchoolDto = toDrivingSchoolDto;
+    }
+
+    @GetMapping
     public ResponseEntity<List<DrivingSchoolResponse>> getAll() {
-
         List<DrivingSchool> drivingSchoolList = drivingSchoolService.all();
-
         return new ResponseEntity<>(toDrivingSchoolDto.convert(drivingSchoolList), HttpStatus.OK);
     }
 
-    @GetMapping("{id}/exams")
+    @GetMapping("/{id}/exams")
     public ResponseEntity<List<ExamResponse>> getExamsByDrivingSchoolId(
-            @PathVariable("id") Long drivingSchoolId) {
+            @PathVariable Long drivingSchoolId) {
         return new ResponseEntity<>(drivingSchoolService.getExamsByDrivingSchoolId(drivingSchoolId), HttpStatus.OK);
     }
+
 }
