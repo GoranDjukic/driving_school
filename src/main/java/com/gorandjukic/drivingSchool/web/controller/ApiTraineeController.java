@@ -28,37 +28,33 @@ public class ApiTraineeController {
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "999") int size) {
         Page<Trainee> traineeList = traineeService.all(page, size);
-
         return new ResponseEntity<>(toTraineeDto.convert(traineeList.getContent()), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
-    ResponseEntity<TraineeResponse> getOne(@PathVariable Long id) {
+    public ResponseEntity<TraineeResponse> getOne(@PathVariable Long id) {
         Optional<Trainee> trainee = traineeService.one(id);
-
         return new ResponseEntity<>(toTraineeDto.convert(trainee.get()), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<TraineeResponse> save(@RequestBody TraineeRequest request) {
         Trainee saved = traineeService.save(request);
-
         return new ResponseEntity<TraineeResponse>(toTraineeDto.convert(saved), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<TraineeResponse> update(
             @PathVariable Long id,
-            @RequestBody TraineeRequest request) {
+            @RequestBody TraineeRequest request
+    ) {
         Trainee persisted = traineeService.update(request, id);
-
         return new ResponseEntity<>(toTraineeDto.convert(persisted), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         traineeService.delete(id);
-
         return new ResponseEntity<String>("Student deleted successfully!", HttpStatus.OK);
     }
 
@@ -67,12 +63,8 @@ public class ApiTraineeController {
             @RequestParam Long drivingSchoolId,
             @RequestParam String traineeName
     ) {
-
         return traineeService.getTraineesByDsOrName(
                 drivingSchoolId,
-                traineeName
-        );
+                traineeName);
     }
 }
-
-

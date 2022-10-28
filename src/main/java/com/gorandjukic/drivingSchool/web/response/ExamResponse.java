@@ -2,7 +2,6 @@ package com.gorandjukic.drivingSchool.web.response;
 
 import java.time.LocalDate;
 
-// DTO projection - useful reference Thorben Jansen Hibernate Tips
 public class ExamResponse {
 
     private Long id;

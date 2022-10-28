@@ -10,6 +10,7 @@ public class DrivingSchoolResponse {
     private Integer yearOfEst;
     private Integer numberOfVehicle;
 
+
     public DrivingSchoolResponse() {
 
     }

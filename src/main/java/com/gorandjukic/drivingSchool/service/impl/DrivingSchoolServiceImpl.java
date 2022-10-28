@@ -5,7 +5,6 @@ import com.gorandjukic.drivingSchool.repository.DrivingSchoolRepository;
 import com.gorandjukic.drivingSchool.service.DrivingSchoolService;
 import com.gorandjukic.drivingSchool.web.response.ExamResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +20,7 @@ public class DrivingSchoolServiceImpl implements DrivingSchoolService {
         return drivingSchoolRepository.findAll();
     }
 
+    // todo ne valja
     @Override
     public List<ExamResponse> getExamsByDrivingSchoolId(Long drivingSchoolId) {
         return drivingSchoolRepository.getExamsByDrivingSchoolId(drivingSchoolId);
