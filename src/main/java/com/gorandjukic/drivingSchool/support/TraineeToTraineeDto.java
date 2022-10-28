@@ -1,7 +1,7 @@
 package com.gorandjukic.drivingSchool.support;
 
 import com.gorandjukic.drivingSchool.domain.Trainee;
-import com.gorandjukic.drivingSchool.web.response.TraineeResponse;
+import com.gorandjukic.drivingSchool.web.response.TraineeDtoProjection;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class TraineeToTraineeDto implements Converter<Trainee, TraineeResponse> {
+public class TraineeToTraineeDto implements Converter<Trainee, TraineeDtoProjection> {
 
     @Override
-    public TraineeResponse convert(Trainee source) {
-        TraineeResponse dto = new TraineeResponse();
+    public TraineeDtoProjection convert(Trainee source) {
+        TraineeDtoProjection dto = new TraineeDtoProjection();
 
         dto.setId(source.getId());
         dto.setName(source.getName());
@@ -22,7 +22,6 @@ public class TraineeToTraineeDto implements Converter<Trainee, TraineeResponse> 
         dto.setPlace(source.getPlace());
         dto.setListenedTheory(source.isListenedTheory());
         dto.setDrivingDone(source.isDrivingDone());
-        dto.setPassedExam(source.isPassedExam());
 
         dto.setDrivingSchoolId(source.getDrivingSchool().getId());
         dto.setDrivingSchoolName(source.getDrivingSchool().getName());
@@ -30,8 +29,8 @@ public class TraineeToTraineeDto implements Converter<Trainee, TraineeResponse> 
         return dto;
     }
 
-    public List<TraineeResponse> convert (List<Trainee> source) {
-        List<TraineeResponse> dtos = new ArrayList<>();
+    public List<TraineeDtoProjection> convert(List<Trainee> source) {
+        List<TraineeDtoProjection> dtos = new ArrayList<>();
 
         for (Trainee t : source) {
             dtos.add(convert(t));

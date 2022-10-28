@@ -4,8 +4,7 @@ import com.gorandjukic.drivingSchool.domain.Trainee;
 import com.gorandjukic.drivingSchool.service.TraineeService;
 import com.gorandjukic.drivingSchool.support.TraineeToTraineeDto;
 import com.gorandjukic.drivingSchool.web.request.TraineeRequest;
-import com.gorandjukic.drivingSchool.web.response.TraineeResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.gorandjukic.drivingSchool.web.response.TraineeDtoProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,16 +14,22 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/api/trainee")
-public class ApiTraineeController {
+@RequestMapping(value = "/api/v1/trainee")
+public class TraineeController {
 
-    @Autowired
-    private TraineeService traineeService;
-    @Autowired
-    private TraineeToTraineeDto toTraineeDto;
+    private final TraineeService traineeService;
+    private final TraineeToTraineeDto toTraineeDto;
+
+    public TraineeController(
+            TraineeService traineeService,
+            TraineeToTraineeDto toTraineeDto
+    ) {
+        this.traineeService = traineeService;
+        this.toTraineeDto = toTraineeDto;
+    }
 
     @GetMapping
-    public ResponseEntity<List<TraineeResponse>> getAll(
+    public ResponseEntity<List<TraineeDtoProjection>> getAll(
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "999") int size) {
         Page<Trainee> traineeList = traineeService.all(page, size);
@@ -32,19 +37,19 @@ public class ApiTraineeController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<TraineeResponse> getOne(@PathVariable Long id) {
+    public ResponseEntity<TraineeDtoProjection> getOne(@PathVariable Long id) {
         Optional<Trainee> trainee = traineeService.one(id);
         return new ResponseEntity<>(toTraineeDto.convert(trainee.get()), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<TraineeResponse> save(@RequestBody TraineeRequest request) {
+    public ResponseEntity<TraineeDtoProjection> save(@RequestBody TraineeRequest request) {
         Trainee saved = traineeService.save(request);
-        return new ResponseEntity<TraineeResponse>(toTraineeDto.convert(saved), HttpStatus.CREATED);
+        return new ResponseEntity<>(toTraineeDto.convert(saved), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<TraineeResponse> update(
+    public ResponseEntity<TraineeDtoProjection> update(
             @PathVariable Long id,
             @RequestBody TraineeRequest request
     ) {
@@ -55,11 +60,11 @@ public class ApiTraineeController {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         traineeService.delete(id);
-        return new ResponseEntity<String>("Student deleted successfully!", HttpStatus.OK);
+        return new ResponseEntity<>("Student deleted successfully!", HttpStatus.OK);
     }
 
     @GetMapping("/search")
-    public List<TraineeResponse> getTraineesByDsOrName(
+    public List<TraineeDtoProjection> getTraineesByDsOrName(
             @RequestParam Long drivingSchoolId,
             @RequestParam String traineeName
     ) {

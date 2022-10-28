@@ -9,7 +9,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TraineeDtoToTrainee implements Converter<TraineeRequest, Trainee> {
+public class TraineeEntityMapper implements Converter<TraineeRequest, Trainee> {
 
     @Autowired
     private DrivingSchoolRepository drivingSchoolRepository;

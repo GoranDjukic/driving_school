@@ -5,7 +5,7 @@ import com.gorandjukic.drivingSchool.repository.TraineeRepository;
 import com.gorandjukic.drivingSchool.service.TraineeService;
 import com.gorandjukic.drivingSchool.support.TraineeEntityMapper;
 import com.gorandjukic.drivingSchool.web.request.TraineeRequest;
-import com.gorandjukic.drivingSchool.web.response.TraineeResponse;
+import com.gorandjukic.drivingSchool.web.response.TraineeDtoProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -65,7 +65,7 @@ public class TraineeServiceImpl implements TraineeService {
     }
 
     @Override
-    public List<TraineeResponse> getTraineesByDsOrName(Long drivingSchoolId, String traineeName) {
+    public List<TraineeDtoProjection> getTraineesByDsOrName(Long drivingSchoolId, String traineeName) {
         return traineeRepository.getTraineesByDsOrName(drivingSchoolId, traineeName);
     }
 }

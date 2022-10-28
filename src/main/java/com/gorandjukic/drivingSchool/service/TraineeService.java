@@ -2,7 +2,7 @@ package com.gorandjukic.drivingSchool.service;
 
 import com.gorandjukic.drivingSchool.domain.Trainee;
 import com.gorandjukic.drivingSchool.web.request.TraineeRequest;
-import com.gorandjukic.drivingSchool.web.response.TraineeResponse;
+import com.gorandjukic.drivingSchool.web.response.TraineeDtoProjection;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -20,5 +20,5 @@ public interface TraineeService {
 
     Trainee delete(Long id);
 
-    List<TraineeResponse> getTraineesByDsOrName(Long drivingSchoolId, String traineeName);
+    List<TraineeDtoProjection> getTraineesByDsOrName(Long drivingSchoolId, String traineeName);
 }

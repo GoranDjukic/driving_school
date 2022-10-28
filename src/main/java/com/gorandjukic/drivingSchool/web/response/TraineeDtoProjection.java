@@ -1,6 +1,6 @@
 package com.gorandjukic.drivingSchool.web.response;
 
-public class TraineeResponse {
+public class TraineeDtoProjection {
 
     private Long id;
     private String name;
@@ -11,14 +11,13 @@ public class TraineeResponse {
     private boolean drivingDone;
     private Long drivingSchoolId;
     private String drivingSchoolName;
-    private boolean passedExam;
     private boolean appliedExam;
 
 
-    public TraineeResponse() {
+    public TraineeDtoProjection() {
     }
 
-    public TraineeResponse(
+    public TraineeDtoProjection(
             Long id,
             String name,
             String surname,
@@ -26,8 +25,8 @@ public class TraineeResponse {
             String place,
             Long drivingSchoolId,
             String drivingSchoolName,
-            boolean passedExam,
-            boolean appliedExam) {
+            boolean appliedExam
+    ) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -35,18 +34,21 @@ public class TraineeResponse {
         this.place = place;
         this.drivingSchoolId = drivingSchoolId;
         this.drivingSchoolName = drivingSchoolName;
-        this.passedExam = passedExam;
         this.appliedExam = appliedExam;
     }
 
-    public TraineeResponse(String name, String surname, Integer birthYear,
-                           String place, String drivingSchoolName, boolean passedExam) {
+    public TraineeDtoProjection(
+            String name,
+            String surname,
+            Integer birthYear,
+            String place,
+            String drivingSchoolName
+    ) {
         this.name = name;
         this.surname = surname;
         this.birthYear = birthYear;
         this.place = place;
         this.drivingSchoolName = drivingSchoolName;
-        this.passedExam = passedExam;
     }
 
     public Long getId() {
@@ -103,14 +105,6 @@ public class TraineeResponse {
 
     public void setDrivingSchoolName(String drivingSchoolName) {
         this.drivingSchoolName = drivingSchoolName;
-    }
-
-    public boolean isPassedExam() {
-        return passedExam;
-    }
-
-    public void setPassedExam(boolean passedExam) {
-        this.passedExam = passedExam;
     }
 
     public boolean isListenedTheory() {
