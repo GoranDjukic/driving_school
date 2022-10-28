@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class TraineeToTraineeDto implements Converter<Trainee, TraineeDtoProjection> {
+public class TraineeResponseMapper implements Converter<Trainee, TraineeDtoProjection> {
 
     @Override
     public TraineeDtoProjection convert(Trainee source) {

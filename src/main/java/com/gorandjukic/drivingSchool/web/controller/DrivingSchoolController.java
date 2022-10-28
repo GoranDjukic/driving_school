@@ -2,7 +2,7 @@ package com.gorandjukic.drivingSchool.web.controller;
 
 import com.gorandjukic.drivingSchool.domain.DrivingSchool;
 import com.gorandjukic.drivingSchool.service.DrivingSchoolService;
-import com.gorandjukic.drivingSchool.support.DrivingSchoolToDrivingSchoolDto;
+import com.gorandjukic.drivingSchool.support.DrivingSchoolResponseMapper;
 import com.gorandjukic.drivingSchool.web.response.DrivingSchoolResponse;
 import com.gorandjukic.drivingSchool.web.response.ExamResponse;
 import org.springframework.http.HttpStatus;
@@ -17,11 +17,11 @@ import java.util.List;
 public class DrivingSchoolController {
 
     private final DrivingSchoolService drivingSchoolService;
-    private final DrivingSchoolToDrivingSchoolDto toDrivingSchoolDto;
+    private final DrivingSchoolResponseMapper toDrivingSchoolDto;
 
     public DrivingSchoolController(
             DrivingSchoolService drivingSchoolService,
-            DrivingSchoolToDrivingSchoolDto toDrivingSchoolDto
+            DrivingSchoolResponseMapper toDrivingSchoolDto
     ) {
         this.drivingSchoolService = drivingSchoolService;
         this.toDrivingSchoolDto = toDrivingSchoolDto;

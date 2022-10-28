@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class DrivingSchoolToDrivingSchoolDto implements Converter<DrivingSchool, DrivingSchoolResponse> {
+public class DrivingSchoolResponseMapper implements Converter<DrivingSchool, DrivingSchoolResponse> {
 
     @Override
     public DrivingSchoolResponse convert(DrivingSchool source) {
@@ -32,4 +32,5 @@ public class DrivingSchoolToDrivingSchoolDto implements Converter<DrivingSchool,
         }
         return dtos;
     }
+
 }

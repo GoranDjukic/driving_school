@@ -2,7 +2,7 @@ package com.gorandjukic.drivingSchool.web.controller;
 
 import com.gorandjukic.drivingSchool.domain.Trainee;
 import com.gorandjukic.drivingSchool.service.TraineeService;
-import com.gorandjukic.drivingSchool.support.TraineeToTraineeDto;
+import com.gorandjukic.drivingSchool.support.TraineeResponseMapper;
 import com.gorandjukic.drivingSchool.web.request.TraineeRequest;
 import com.gorandjukic.drivingSchool.web.response.TraineeDtoProjection;
 import org.springframework.data.domain.Page;
@@ -18,14 +18,14 @@ import java.util.Optional;
 public class TraineeController {
 
     private final TraineeService traineeService;
-    private final TraineeToTraineeDto toTraineeDto;
+    private final TraineeResponseMapper traineeResponseMapper;
 
     public TraineeController(
             TraineeService traineeService,
-            TraineeToTraineeDto toTraineeDto
+            TraineeResponseMapper traineeResponseMapper
     ) {
         this.traineeService = traineeService;
-        this.toTraineeDto = toTraineeDto;
+        this.traineeResponseMapper = traineeResponseMapper;
     }
 
     @GetMapping
@@ -33,19 +33,19 @@ public class TraineeController {
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "999") int size) {
         Page<Trainee> traineeList = traineeService.all(page, size);
-        return new ResponseEntity<>(toTraineeDto.convert(traineeList.getContent()), HttpStatus.OK);
+        return new ResponseEntity<>(traineeResponseMapper.convert(traineeList.getContent()), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<TraineeDtoProjection> getOne(@PathVariable Long id) {
         Optional<Trainee> trainee = traineeService.one(id);
-        return new ResponseEntity<>(toTraineeDto.convert(trainee.get()), HttpStatus.OK);
+        return new ResponseEntity<>(traineeResponseMapper.convert(trainee.get()), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<TraineeDtoProjection> save(@RequestBody TraineeRequest request) {
         Trainee saved = traineeService.save(request);
-        return new ResponseEntity<>(toTraineeDto.convert(saved), HttpStatus.CREATED);
+        return new ResponseEntity<>(traineeResponseMapper.convert(saved), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}")
@@ -54,7 +54,7 @@ public class TraineeController {
             @RequestBody TraineeRequest request
     ) {
         Trainee persisted = traineeService.update(request, id);
-        return new ResponseEntity<>(toTraineeDto.convert(persisted), HttpStatus.OK);
+        return new ResponseEntity<>(traineeResponseMapper.convert(persisted), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}")
