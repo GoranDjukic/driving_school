@@ -1,7 +1,12 @@
 package com.gorandjukic.drivingSchool.domain;
 
-import javax.persistence.*;
-import java.util.Objects;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Trainee extends BaseEntity {
@@ -12,9 +17,11 @@ public class Trainee extends BaseEntity {
     private String place;
     private boolean listenedTheory;
     private boolean drivingDone;
-    private boolean passedExam;
+    @JoinColumn(name = "driving_school_id")
     @ManyToOne
     private DrivingSchool drivingSchool;
+    @OneToMany(mappedBy = "exam")
+    private Set<Examination> examinations = new HashSet<>();
 
     public Trainee() {
     }
@@ -26,7 +33,6 @@ public class Trainee extends BaseEntity {
             String place,
             boolean listenedTheory,
             boolean drivingDone,
-            boolean passedExam,
             DrivingSchool drivingSchool
     ) {
         this.name = name;
@@ -35,8 +41,11 @@ public class Trainee extends BaseEntity {
         this.place = place;
         this.listenedTheory = listenedTheory;
         this.drivingDone = drivingDone;
-        this.passedExam = passedExam;
         this.drivingSchool = drivingSchool;
+    }
+
+    public boolean hasPendingExaminations() {
+        return this.examinations.stream().anyMatch(Examination::isPending);
     }
 
     public String getName() {
@@ -87,14 +96,6 @@ public class Trainee extends BaseEntity {
         this.drivingDone = drivingDone;
     }
 
-    public boolean isPassedExam() {
-        return passedExam;
-    }
-
-    public void setPassedExam(boolean passedExam) {
-        this.passedExam = passedExam;
-    }
-
     public DrivingSchool getDrivingSchool() {
         return drivingSchool;
     }
@@ -103,34 +104,12 @@ public class Trainee extends BaseEntity {
         this.drivingSchool = drivingSchool;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof Trainee))
-            return false;
-        Trainee trainee = (Trainee) o;
-        return isListenedTheory() == trainee.isListenedTheory() && isDrivingDone() == trainee.isDrivingDone() && isPassedExam() == trainee.isPassedExam() && Objects.equals(getId(), trainee.getId()) && Objects.equals(getName(), trainee.getName()) && Objects.equals(getSurname(), trainee.getSurname()) && Objects.equals(getBirthYear(), trainee.getBirthYear()) && Objects.equals(getPlace(), trainee.getPlace()) && Objects.equals(getDrivingSchool(), trainee.getDrivingSchool());
+    public Set<Examination> getExaminations() {
+        return examinations;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName(), getSurname(), getBirthYear(), getPlace(), isListenedTheory(), isDrivingDone(), isPassedExam(), getDrivingSchool());
+    public void setExaminations(Set<Examination> examinations) {
+        this.examinations = examinations;
     }
 
-    @Override
-    public String toString() {
-        return "Trainee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", birthYear=" + birthYear +
-                ", place='" + place + '\'' +
-                ", listenedTheory=" + listenedTheory +
-                ", drivingDone=" + drivingDone +
-                ", passedExam=" + passedExam +
-                ", drivingSchool=" + drivingSchool +
-                '}';
-    }
 }
