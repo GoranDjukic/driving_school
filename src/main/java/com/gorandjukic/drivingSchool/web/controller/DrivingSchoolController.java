@@ -35,8 +35,8 @@ public class DrivingSchoolController {
 
     @GetMapping("/{id}/exams")
     public ResponseEntity<List<ExamResponse>> getExamsByDrivingSchoolId(
-            @PathVariable Long drivingSchoolId) {
-        return new ResponseEntity<>(drivingSchoolService.getExamsByDrivingSchoolId(drivingSchoolId), HttpStatus.OK);
+            @PathVariable Long id) {
+        return new ResponseEntity<>(drivingSchoolService.getExamsByDrivingSchoolId(id), HttpStatus.OK);
     }
 
 }
